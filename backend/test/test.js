@@ -1,10 +1,13 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index.js';
+import mongoose from 'mongoose';
 
 // Configure chai
 chai.use(chaiHttp);
 chai.should();
+
+console.log(`DB connection state: ${mongoose.connection.readyState}`);
 
 describe("App", () => {
     describe("GET /", () => {
