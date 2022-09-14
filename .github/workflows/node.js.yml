@@ -9,25 +9,25 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-    services:
-      mongodb:
-        image: mongo:6.0.1
-        options: >-
-          --health-cmd mongo
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 27017:27017
+        mongodb-version: ['6.0']
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.8.0
+      with:
+        mongodb-version: ${{ matrix.mongodb-version }}
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    
     - name: Install dependencies
       working-directory: ./backend
       run: npm install
+    
     - name: Run All Node.js Tests
       working-directory: ./backend
       env:
