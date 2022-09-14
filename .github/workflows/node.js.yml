@@ -5,11 +5,14 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         node-version: [16.x]
         mongodb-version: ['6.0']
+        platform: [ubuntu-latest, windows-latest]
+    
+    runs-on: ${{ matrix.platform }}
 
     steps:
     - uses: actions/checkout@v2
