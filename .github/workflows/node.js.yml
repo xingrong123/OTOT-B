@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        mongodb-version: ['6.0']
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -20,9 +20,7 @@ jobs:
       working-directory: ./backend
       run: npm install
     - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.8.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
+      run:  sudo docker run --name mongo -d -p 27017:27017 mongo
     - name: Run All Node.js Tests
       working-directory: ./backend
       env:
