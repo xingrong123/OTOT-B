@@ -16,7 +16,7 @@ app.use('/api/user', router).all((_, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
 })
 
-const port = 3000
+const port = process.env.ENV == "PROD" ? process.env.API_ENDPOINT : 3000
 
 router.get('/', getUser)
 
