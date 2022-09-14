@@ -11,7 +11,7 @@ export async function ormCreateUser(name, info) {
         newUser.save();
         return newUser;
     } catch (err) {
-        console.log('ERROR: Could not create new user');
+        // console.log('ERROR: Could not create new user');
         return { err };
     }
 }
@@ -25,7 +25,7 @@ export async function ormDeleteUser(name) {
         await deleteUser({name});
         return true;
     } catch (err) {
-        console.log('ERROR: Could not delete user');
+        // console.log('ERROR: Could not delete user');
         return { err };
     }
 }
@@ -39,7 +39,7 @@ export async function ormUpdateUserInfo(name, info) {
         await updateUserInfo({name}, {info});
         return true;
     } catch (err) {
-        console.log('ERROR: Could not update user');
+        // console.log('ERROR: Could not update user');
         return { err };
     }
 }

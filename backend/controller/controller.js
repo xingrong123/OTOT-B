@@ -11,11 +11,11 @@ export async function createUser(req, res) {
         const { name, info } = req.body;
         if (name && info) {
             const resp = await ormCreateUser(name, info);
-            console.log(resp);
+            // console.log(resp);
             if (resp.err) {
                 return res.status(422).json({message: 'User already exists!'});
             } else {
-                console.log(`Created new user ${name} successfully!`)
+                // console.log(`Created new user ${name} successfully!`)
                 return res.status(200).json({message: `Created new user ${name} successfully!`, data: {name, info}});
             }
         } else {
@@ -47,7 +47,7 @@ export async function getUser(req, res) {
 export async function getAllUsers(req, res) {
     try {
         const resp = await ormGetAllUsers();
-        console.log(`Queried all users successfully!`)
+        // console.log(`Queried all users successfully!`)
         return res.status(200).json({message: `Queried all users successfully!`, data: resp});
     } catch (err) {
         return res.status(500).json({message: 'Database failure when creating new user!'})
@@ -62,7 +62,7 @@ export async function deleteUser(req, res) {
             if (resp.err) {
                 return res.status(404).json({message: 'User not found! Could not delete user!'});
             } else {
-                console.log(`Deleted user ${name} successfully!`)
+                // console.log(`Deleted user ${name} successfully!`)
                 return res.status(200).json({message: `Deleted user ${name} successfully!`});
             }
         } else {
@@ -81,7 +81,7 @@ export async function updateUser(req, res) {
             if (resp.err) {
                 return res.status(404).json({message: 'User not found! Could not update user info!'});
             } else {
-                console.log(`Update user ${name}'s info successfully!`)
+                // console.log(`Update user ${name}'s info successfully!`)
                 return res.status(200).json({message: `Update user ${name}'s info successfully!`});
             }
         } else {

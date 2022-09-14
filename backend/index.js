@@ -32,3 +32,6 @@ router.delete('/', deleteUser)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+// Export our app for testing purposes
+export default app;
