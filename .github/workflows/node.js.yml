@@ -10,7 +10,7 @@ jobs:
       matrix:
         node-version: [16.x]
         mongodb-version: ['6.0']
-        platform: [ubuntu-latest, windows-latest]
+        platform: [ubuntu-latest]
     
     runs-on: ${{ matrix.platform }}
 
