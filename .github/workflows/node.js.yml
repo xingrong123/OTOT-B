@@ -9,6 +9,11 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+    services:
+      mongodb:
+        image: mongo:6.0.1
+        ports:
+          - 27017:27017
 
     steps:
     - uses: actions/checkout@v2
@@ -19,8 +24,6 @@ jobs:
     - name: Install dependencies
       working-directory: ./backend
       run: npm install
-    - name: Start MongoDB
-      run:  sudo docker run --name mongo -d -p 27017:27017 mongo
     - name: Run All Node.js Tests
       working-directory: ./backend
       env:
