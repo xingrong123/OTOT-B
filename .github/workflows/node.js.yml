@@ -64,7 +64,8 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        application_name: "otot-b2"
-        environment_name: "otot-b2-env"
+        application_name: ${{ secrets.AWS_APPLICATION_NAME }}
+        environment_name: ${{ secrets.AWS_APPLICATION_ENV }}
         region: ap-southeast-1
+        version_label: 1
         deployment_package: deploy.zip
