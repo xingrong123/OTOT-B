@@ -1,4 +1,4 @@
-name: NodeJS CI
+name: NodeJS CI/CD
 on: 
   push:
     branches: [ main ]
@@ -37,3 +37,33 @@ jobs:
         ENV: ${{ secrets.ENV }}
         DB_LOCAL_URI: ${{ secrets.DB_LOCAL_URI }}
       run: npm run test
+  
+  deploy:
+    needs: [test]
+    
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - name: Checkout the files
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+      
+    - name: Generate deployment package
+      run: zip -r deploy.zip * -x "**node_modules**"
+
+    - name: Beanstalk Deploy for app
+      uses: einaregilsson/beanstalk-deploy@v20
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_REACT_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_REACT_KEY }}
+        application_name: "otot-b2"
+        environment_name: "otot-b2-env"
+        deployment_package: deploy.zip
