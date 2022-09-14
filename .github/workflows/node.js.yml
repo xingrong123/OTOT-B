@@ -57,7 +57,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
       
     - name: Generate deployment package
-      run: cd backend && zip -r deploy.zip * -x "**node_modules**"
+      run: zip -r deploy.zip backend -x "**node_modules**"
 
     - name: Get timestamp
       uses: gerred/actions/current-time@master
