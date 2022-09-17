@@ -11,6 +11,8 @@ import { createUser, deleteUser, updateUser, getUser, getAllUsers } from './cont
 
 const router = express.Router()
 
+app.get('/', (_, res) => res.send('Hello World'))
+
 app.use('/api/user', router).all((_, res) => {
     res.setHeader('content-type', 'application/json')
     res.setHeader('Access-Control-Allow-Origin', '*')
