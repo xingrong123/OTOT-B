@@ -8,8 +8,8 @@ import {
 
 export async function createUser(req, res) {
     try {
-        const name = req.body.name.trim();
-        const info = req.body.info.trim();
+        const name = req.body.name?.trim();
+        const info = req.body.info?.trim();
         if (name && info) {
             const resp = await ormCreateUser(name, info);
             if (resp.err) {
@@ -27,7 +27,7 @@ export async function createUser(req, res) {
 
 export async function getUser(req, res) {
     try {
-        const name = req.query.name.trim();
+        const name = req.query.name?.trim();
         if (name) {
             const resp = await ormGetUser(name);
             if (resp) {
@@ -54,7 +54,7 @@ export async function getAllUsers(req, res) {
 
 export async function deleteUser(req, res) {
     try {
-        const name = req.body.name.trim();
+        const name = req.body.name?.trim();
         if (name) {
             const resp = await ormDeleteUser(name);
             if (resp.err) {
@@ -72,8 +72,8 @@ export async function deleteUser(req, res) {
 
 export async function updateUser(req, res) {
     try {
-        const name = req.body.name.trim();
-        const info = req.body.info.trim();
+        const name = req.body.name?.trim();
+        const info = req.body.info?.trim();
         if (name && info) {
             const resp = await ormUpdateUserInfo(name, info);
             if (resp.err) {
