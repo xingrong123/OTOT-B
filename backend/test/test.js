@@ -63,7 +63,7 @@ describe("App", () => {
         it("should get a user", (done) => {
             chai.request(app)
                 .get('/api/user')
-                .send({ name: 'tomtest' })
+                .query({ name: 'tomtest' })
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -75,7 +75,7 @@ describe("App", () => {
         it("should not get a missing user", (done) => {
             chai.request(app)
                 .get('/api/user')
-                .send({ name: 'tommissing' })
+                .query({ name: 'tommissing' })
                 .end((err, res) => {
                     res.should.have.status(404);
                     res.body.should.be.a('object');
