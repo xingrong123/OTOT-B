@@ -79,7 +79,6 @@ export default function ApiTabs(props) {
         break;
     }
     call.then((res) => {
-      console.log(res.data.data)
       if (selectedTab === 0) {
         successMessage = `User found: Name: ${res.data.data.name} Info: ${res.data.data.info}`
       } else {
